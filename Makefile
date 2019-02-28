@@ -14,7 +14,7 @@ setup-ci:
 
 setup-protobuf-macos:
 	@brew install protobuf
-	@go get -u github.com/gogo/protobuf/protoc-gen-gogofaster
+	@go get github.com/golang/protobuf/protoc-gen-go
 
 run-chat-example:
 	@cd examples/testing && docker-compose up -d etcd nats && cd ../demo/chat/ && go run main.go
