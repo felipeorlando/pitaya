@@ -3,11 +3,12 @@
 
 package test
 
-import proto "github.com/gogo/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
-import io "io"
+import (
+	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
+	io "io"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -29,7 +30,7 @@ func (m *SomeStruct) Reset()         { *m = SomeStruct{} }
 func (m *SomeStruct) String() string { return proto.CompactTextString(m) }
 func (*SomeStruct) ProtoMessage()    {}
 func (*SomeStruct) Descriptor() ([]byte, []int) {
-	return fileDescriptor_somestruct_2eb774db249dfbc5, []int{0}
+	return fileDescriptor_68a6eb5aaa33b87c, []int{0}
 }
 func (m *SomeStruct) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -46,8 +47,8 @@ func (m *SomeStruct) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (dst *SomeStruct) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SomeStruct.Merge(dst, src)
+func (m *SomeStruct) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SomeStruct.Merge(m, src)
 }
 func (m *SomeStruct) XXX_Size() int {
 	return m.Size()
@@ -75,6 +76,21 @@ func (m *SomeStruct) GetB() string {
 func init() {
 	proto.RegisterType((*SomeStruct)(nil), "test.SomeStruct")
 }
+
+func init() { proto.RegisterFile("somestruct.proto", fileDescriptor_68a6eb5aaa33b87c) }
+
+var fileDescriptor_68a6eb5aaa33b87c = []byte{
+	// 117 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0xce, 0xcf, 0x4d,
+	0x2d, 0x2e, 0x29, 0x2a, 0x4d, 0x2e, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x29, 0x49,
+	0x2d, 0x2e, 0x51, 0xd2, 0xe0, 0xe2, 0x0a, 0xce, 0xcf, 0x4d, 0x0d, 0x06, 0xcb, 0x08, 0xf1, 0x70,
+	0x31, 0x3a, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0xb0, 0x06, 0x31, 0x3a, 0x82, 0x78, 0x4e, 0x12, 0x4c,
+	0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x8c, 0x4e, 0x4e, 0x12, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24,
+	0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78,
+	0x2c, 0xc7, 0x90, 0xc4, 0x06, 0x36, 0xd0, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0xd2, 0x8f, 0xe1,
+	0x3e, 0x64, 0x00, 0x00, 0x00,
+}
+
 func (m *SomeStruct) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -157,7 +173,7 @@ func (m *SomeStruct) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -185,7 +201,7 @@ func (m *SomeStruct) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.A |= (int32(b) & 0x7F) << shift
+				m.A |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -204,7 +220,7 @@ func (m *SomeStruct) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -214,6 +230,9 @@ func (m *SomeStruct) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthSomestruct
 			}
 			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSomestruct
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -226,6 +245,9 @@ func (m *SomeStruct) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
+				return ErrInvalidLengthSomestruct
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthSomestruct
 			}
 			if (iNdEx + skippy) > l {
@@ -294,8 +316,11 @@ func skipSomestruct(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			iNdEx += length
 			if length < 0 {
+				return 0, ErrInvalidLengthSomestruct
+			}
+			iNdEx += length
+			if iNdEx < 0 {
 				return 0, ErrInvalidLengthSomestruct
 			}
 			return iNdEx, nil
@@ -326,6 +351,9 @@ func skipSomestruct(dAtA []byte) (n int, err error) {
 					return 0, err
 				}
 				iNdEx = start + next
+				if iNdEx < 0 {
+					return 0, ErrInvalidLengthSomestruct
+				}
 			}
 			return iNdEx, nil
 		case 4:
@@ -344,17 +372,3 @@ var (
 	ErrInvalidLengthSomestruct = fmt.Errorf("proto: negative length found during unmarshaling")
 	ErrIntOverflowSomestruct   = fmt.Errorf("proto: integer overflow")
 )
-
-func init() { proto.RegisterFile("somestruct.proto", fileDescriptor_somestruct_2eb774db249dfbc5) }
-
-var fileDescriptor_somestruct_2eb774db249dfbc5 = []byte{
-	// 117 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0xce, 0xcf, 0x4d,
-	0x2d, 0x2e, 0x29, 0x2a, 0x4d, 0x2e, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x29, 0x49,
-	0x2d, 0x2e, 0x51, 0xd2, 0xe0, 0xe2, 0x0a, 0xce, 0xcf, 0x4d, 0x0d, 0x06, 0xcb, 0x08, 0xf1, 0x70,
-	0x31, 0x3a, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0xb0, 0x06, 0x31, 0x3a, 0x82, 0x78, 0x4e, 0x12, 0x4c,
-	0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x8c, 0x4e, 0x4e, 0x12, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24,
-	0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78,
-	0x2c, 0xc7, 0x90, 0xc4, 0x06, 0x36, 0xd0, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0xd2, 0x8f, 0xe1,
-	0x3e, 0x64, 0x00, 0x00, 0x00,
-}

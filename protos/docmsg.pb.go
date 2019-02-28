@@ -3,11 +3,12 @@
 
 package protos
 
-import proto "github.com/gogo/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
-import io "io"
+import (
+	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
+	io "io"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -28,7 +29,7 @@ func (m *DocMsg) Reset()         { *m = DocMsg{} }
 func (m *DocMsg) String() string { return proto.CompactTextString(m) }
 func (*DocMsg) ProtoMessage()    {}
 func (*DocMsg) Descriptor() ([]byte, []int) {
-	return fileDescriptor_docmsg_e05ec12dae2e8317, []int{0}
+	return fileDescriptor_97e564936d2eb7fd, []int{0}
 }
 func (m *DocMsg) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -45,8 +46,8 @@ func (m *DocMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (dst *DocMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DocMsg.Merge(dst, src)
+func (m *DocMsg) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocMsg.Merge(m, src)
 }
 func (m *DocMsg) XXX_Size() int {
 	return m.Size()
@@ -67,6 +68,20 @@ func (m *DocMsg) GetGetProtos() bool {
 func init() {
 	proto.RegisterType((*DocMsg)(nil), "protos.DocMsg")
 }
+
+func init() { proto.RegisterFile("docmsg.proto", fileDescriptor_97e564936d2eb7fd) }
+
+var fileDescriptor_97e564936d2eb7fd = []byte{
+	// 103 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x49, 0xc9, 0x4f, 0xce,
+	0x2d, 0x4e, 0xd7, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x03, 0x53, 0xc5, 0x4a, 0x6a, 0x5c,
+	0x6c, 0x2e, 0xf9, 0xc9, 0xbe, 0xc5, 0xe9, 0x42, 0x32, 0x5c, 0x9c, 0xe9, 0xa9, 0x25, 0x01, 0x60,
+	0x61, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x8e, 0x20, 0x84, 0x80, 0x93, 0xc4, 0x89, 0x47, 0x72, 0x8c,
+	0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72,
+	0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x24, 0x41, 0x4c, 0x32, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xf3,
+	0xe0, 0xc3, 0xc6, 0x60, 0x00, 0x00, 0x00,
+}
+
 func (m *DocMsg) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -144,7 +159,7 @@ func (m *DocMsg) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -172,7 +187,7 @@ func (m *DocMsg) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= (int(b) & 0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -185,6 +200,9 @@ func (m *DocMsg) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
+				return ErrInvalidLengthDocmsg
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthDocmsg
 			}
 			if (iNdEx + skippy) > l {
@@ -253,8 +271,11 @@ func skipDocmsg(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			iNdEx += length
 			if length < 0 {
+				return 0, ErrInvalidLengthDocmsg
+			}
+			iNdEx += length
+			if iNdEx < 0 {
 				return 0, ErrInvalidLengthDocmsg
 			}
 			return iNdEx, nil
@@ -285,6 +306,9 @@ func skipDocmsg(dAtA []byte) (n int, err error) {
 					return 0, err
 				}
 				iNdEx = start + next
+				if iNdEx < 0 {
+					return 0, ErrInvalidLengthDocmsg
+				}
 			}
 			return iNdEx, nil
 		case 4:
@@ -303,16 +327,3 @@ var (
 	ErrInvalidLengthDocmsg = fmt.Errorf("proto: negative length found during unmarshaling")
 	ErrIntOverflowDocmsg   = fmt.Errorf("proto: integer overflow")
 )
-
-func init() { proto.RegisterFile("docmsg.proto", fileDescriptor_docmsg_e05ec12dae2e8317) }
-
-var fileDescriptor_docmsg_e05ec12dae2e8317 = []byte{
-	// 103 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x49, 0xc9, 0x4f, 0xce,
-	0x2d, 0x4e, 0xd7, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x03, 0x53, 0xc5, 0x4a, 0x6a, 0x5c,
-	0x6c, 0x2e, 0xf9, 0xc9, 0xbe, 0xc5, 0xe9, 0x42, 0x32, 0x5c, 0x9c, 0xe9, 0xa9, 0x25, 0x01, 0x60,
-	0x61, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x8e, 0x20, 0x84, 0x80, 0x93, 0xc4, 0x89, 0x47, 0x72, 0x8c,
-	0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72,
-	0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x24, 0x41, 0x4c, 0x32, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xf3,
-	0xe0, 0xc3, 0xc6, 0x60, 0x00, 0x00, 0x00,
-}

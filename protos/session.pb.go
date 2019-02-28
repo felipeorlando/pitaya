@@ -3,11 +3,12 @@
 
 package protos
 
-import proto "github.com/gogo/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
-import io "io"
+import (
+	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
+	io "io"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -30,7 +31,7 @@ func (m *Session) Reset()         { *m = Session{} }
 func (m *Session) String() string { return proto.CompactTextString(m) }
 func (*Session) ProtoMessage()    {}
 func (*Session) Descriptor() ([]byte, []int) {
-	return fileDescriptor_session_d62cf85f1e1ec7f1, []int{0}
+	return fileDescriptor_3a6be1b361fa6f14, []int{0}
 }
 func (m *Session) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -47,8 +48,8 @@ func (m *Session) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (dst *Session) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Session.Merge(dst, src)
+func (m *Session) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Session.Merge(m, src)
 }
 func (m *Session) XXX_Size() int {
 	return m.Size()
@@ -83,6 +84,22 @@ func (m *Session) GetData() []byte {
 func init() {
 	proto.RegisterType((*Session)(nil), "protos.Session")
 }
+
+func init() { proto.RegisterFile("session.proto", fileDescriptor_3a6be1b361fa6f14) }
+
+var fileDescriptor_3a6be1b361fa6f14 = []byte{
+	// 131 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0x4e, 0x2d, 0x2e,
+	0xce, 0xcc, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x03, 0x53, 0xc5, 0x4a, 0xf6,
+	0x5c, 0xec, 0xc1, 0x10, 0x09, 0x21, 0x3e, 0x2e, 0xa6, 0xcc, 0x14, 0x09, 0x46, 0x05, 0x46, 0x0d,
+	0xe6, 0x20, 0xa6, 0xcc, 0x14, 0x21, 0x01, 0x2e, 0xe6, 0xd2, 0xcc, 0x14, 0x09, 0x26, 0x05, 0x46,
+	0x0d, 0xce, 0x20, 0x10, 0x53, 0x48, 0x88, 0x8b, 0x25, 0x25, 0xb1, 0x24, 0x51, 0x82, 0x59, 0x81,
+	0x51, 0x83, 0x27, 0x08, 0xcc, 0x76, 0x92, 0x38, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6,
+	0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39,
+	0x86, 0x24, 0x88, 0x15, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x75, 0xcf, 0x1a, 0x8e, 0x7a,
+	0x00, 0x00, 0x00,
+}
+
 func (m *Session) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -175,7 +192,7 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -203,7 +220,7 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= (int64(b) & 0x7F) << shift
+				m.Id |= int64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -222,7 +239,7 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -232,6 +249,9 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthSession
 			}
 			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSession
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -251,7 +271,7 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				byteLen |= (int(b) & 0x7F) << shift
+				byteLen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -260,6 +280,9 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthSession
 			}
 			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSession
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -275,6 +298,9 @@ func (m *Session) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
+				return ErrInvalidLengthSession
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthSession
 			}
 			if (iNdEx + skippy) > l {
@@ -343,8 +369,11 @@ func skipSession(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			iNdEx += length
 			if length < 0 {
+				return 0, ErrInvalidLengthSession
+			}
+			iNdEx += length
+			if iNdEx < 0 {
 				return 0, ErrInvalidLengthSession
 			}
 			return iNdEx, nil
@@ -375,6 +404,9 @@ func skipSession(dAtA []byte) (n int, err error) {
 					return 0, err
 				}
 				iNdEx = start + next
+				if iNdEx < 0 {
+					return 0, ErrInvalidLengthSession
+				}
 			}
 			return iNdEx, nil
 		case 4:
@@ -393,18 +425,3 @@ var (
 	ErrInvalidLengthSession = fmt.Errorf("proto: negative length found during unmarshaling")
 	ErrIntOverflowSession   = fmt.Errorf("proto: integer overflow")
 )
-
-func init() { proto.RegisterFile("session.proto", fileDescriptor_session_d62cf85f1e1ec7f1) }
-
-var fileDescriptor_session_d62cf85f1e1ec7f1 = []byte{
-	// 131 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0x4e, 0x2d, 0x2e,
-	0xce, 0xcc, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x03, 0x53, 0xc5, 0x4a, 0xf6,
-	0x5c, 0xec, 0xc1, 0x10, 0x09, 0x21, 0x3e, 0x2e, 0xa6, 0xcc, 0x14, 0x09, 0x46, 0x05, 0x46, 0x0d,
-	0xe6, 0x20, 0xa6, 0xcc, 0x14, 0x21, 0x01, 0x2e, 0xe6, 0xd2, 0xcc, 0x14, 0x09, 0x26, 0x05, 0x46,
-	0x0d, 0xce, 0x20, 0x10, 0x53, 0x48, 0x88, 0x8b, 0x25, 0x25, 0xb1, 0x24, 0x51, 0x82, 0x59, 0x81,
-	0x51, 0x83, 0x27, 0x08, 0xcc, 0x76, 0x92, 0x38, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6,
-	0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39,
-	0x86, 0x24, 0x88, 0x15, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x75, 0xcf, 0x1a, 0x8e, 0x7a,
-	0x00, 0x00, 0x00,
-}

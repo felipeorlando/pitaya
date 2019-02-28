@@ -3,11 +3,12 @@
 
 package test
 
-import proto "github.com/gogo/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
-import io "io"
+import (
+	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
+	io "io"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -29,7 +30,7 @@ func (m *TestResponse) Reset()         { *m = TestResponse{} }
 func (m *TestResponse) String() string { return proto.CompactTextString(m) }
 func (*TestResponse) ProtoMessage()    {}
 func (*TestResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_testresponse_68bc9a8da420ccc0, []int{0}
+	return fileDescriptor_3a9b0ae5d2252c59, []int{0}
 }
 func (m *TestResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -46,8 +47,8 @@ func (m *TestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
-func (dst *TestResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TestResponse.Merge(dst, src)
+func (m *TestResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TestResponse.Merge(m, src)
 }
 func (m *TestResponse) XXX_Size() int {
 	return m.Size()
@@ -75,6 +76,21 @@ func (m *TestResponse) GetMsg() string {
 func init() {
 	proto.RegisterType((*TestResponse)(nil), "test.TestResponse")
 }
+
+func init() { proto.RegisterFile("testresponse.proto", fileDescriptor_3a9b0ae5d2252c59) }
+
+var fileDescriptor_3a9b0ae5d2252c59 = []byte{
+	// 124 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2a, 0x49, 0x2d, 0x2e,
+	0x29, 0x4a, 0x2d, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62,
+	0x01, 0x89, 0x29, 0x99, 0x70, 0xf1, 0x84, 0xa4, 0x16, 0x97, 0x04, 0x41, 0xe5, 0x84, 0x84, 0xb8,
+	0x58, 0x92, 0xf3, 0x53, 0x52, 0x25, 0x18, 0x15, 0x18, 0x35, 0x58, 0x83, 0xc0, 0x6c, 0x21, 0x01,
+	0x2e, 0xe6, 0xdc, 0xe2, 0x74, 0x09, 0x26, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x10, 0xd3, 0x49, 0xe2,
+	0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e,
+	0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0x92, 0xd8, 0xc0, 0x86, 0x1b, 0x03, 0x02,
+	0x00, 0x00, 0xff, 0xff, 0x68, 0x1b, 0x30, 0x7f, 0x72, 0x00, 0x00, 0x00,
+}
+
 func (m *TestResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -157,7 +173,7 @@ func (m *TestResponse) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -185,7 +201,7 @@ func (m *TestResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Code |= (int32(b) & 0x7F) << shift
+				m.Code |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -204,7 +220,7 @@ func (m *TestResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -214,6 +230,9 @@ func (m *TestResponse) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthTestresponse
 			}
 			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTestresponse
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -226,6 +245,9 @@ func (m *TestResponse) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
+				return ErrInvalidLengthTestresponse
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthTestresponse
 			}
 			if (iNdEx + skippy) > l {
@@ -294,8 +316,11 @@ func skipTestresponse(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			iNdEx += length
 			if length < 0 {
+				return 0, ErrInvalidLengthTestresponse
+			}
+			iNdEx += length
+			if iNdEx < 0 {
 				return 0, ErrInvalidLengthTestresponse
 			}
 			return iNdEx, nil
@@ -326,6 +351,9 @@ func skipTestresponse(dAtA []byte) (n int, err error) {
 					return 0, err
 				}
 				iNdEx = start + next
+				if iNdEx < 0 {
+					return 0, ErrInvalidLengthTestresponse
+				}
 			}
 			return iNdEx, nil
 		case 4:
@@ -344,17 +372,3 @@ var (
 	ErrInvalidLengthTestresponse = fmt.Errorf("proto: negative length found during unmarshaling")
 	ErrIntOverflowTestresponse   = fmt.Errorf("proto: integer overflow")
 )
-
-func init() { proto.RegisterFile("testresponse.proto", fileDescriptor_testresponse_68bc9a8da420ccc0) }
-
-var fileDescriptor_testresponse_68bc9a8da420ccc0 = []byte{
-	// 124 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2a, 0x49, 0x2d, 0x2e,
-	0x29, 0x4a, 0x2d, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62,
-	0x01, 0x89, 0x29, 0x99, 0x70, 0xf1, 0x84, 0xa4, 0x16, 0x97, 0x04, 0x41, 0xe5, 0x84, 0x84, 0xb8,
-	0x58, 0x92, 0xf3, 0x53, 0x52, 0x25, 0x18, 0x15, 0x18, 0x35, 0x58, 0x83, 0xc0, 0x6c, 0x21, 0x01,
-	0x2e, 0xe6, 0xdc, 0xe2, 0x74, 0x09, 0x26, 0x05, 0x46, 0x0d, 0xce, 0x20, 0x10, 0xd3, 0x49, 0xe2,
-	0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e,
-	0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0x92, 0xd8, 0xc0, 0x86, 0x1b, 0x03, 0x02,
-	0x00, 0x00, 0xff, 0xff, 0x68, 0x1b, 0x30, 0x7f, 0x72, 0x00, 0x00, 0x00,
-}

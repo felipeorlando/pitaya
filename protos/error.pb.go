@@ -3,11 +3,12 @@
 
 package protos
 
-import proto "github.com/gogo/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
-import io "io"
+import (
+	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
+	io "io"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -30,7 +31,7 @@ func (m *Error) Reset()         { *m = Error{} }
 func (m *Error) String() string { return proto.CompactTextString(m) }
 func (*Error) ProtoMessage()    {}
 func (*Error) Descriptor() ([]byte, []int) {
-	return fileDescriptor_error_01e55f08e82a2b7d, []int{0}
+	return fileDescriptor_0579b252106fcf4a, []int{0}
 }
 func (m *Error) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -47,8 +48,8 @@ func (m *Error) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (dst *Error) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Error.Merge(dst, src)
+func (m *Error) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Error.Merge(m, src)
 }
 func (m *Error) XXX_Size() int {
 	return m.Size()
@@ -84,6 +85,25 @@ func init() {
 	proto.RegisterType((*Error)(nil), "protos.Error")
 	proto.RegisterMapType((map[string]string)(nil), "protos.Error.MetadataEntry")
 }
+
+func init() { proto.RegisterFile("error.proto", fileDescriptor_0579b252106fcf4a) }
+
+var fileDescriptor_0579b252106fcf4a = []byte{
+	// 181 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4e, 0x2d, 0x2a, 0xca,
+	0x2f, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x03, 0x53, 0xc5, 0x4a, 0x8b, 0x19, 0xb9,
+	0x58, 0x5d, 0x41, 0xe2, 0x42, 0x42, 0x5c, 0x2c, 0xc9, 0xf9, 0x29, 0xa9, 0x12, 0x8c, 0x0a, 0x8c,
+	0x1a, 0x9c, 0x41, 0x60, 0xb6, 0x90, 0x00, 0x17, 0x73, 0x6e, 0x71, 0xba, 0x04, 0x13, 0x58, 0x08,
+	0xc4, 0x14, 0x32, 0xe7, 0xe2, 0xc8, 0x4d, 0x2d, 0x49, 0x4c, 0x49, 0x2c, 0x49, 0x94, 0x60, 0x56,
+	0x60, 0xd6, 0xe0, 0x36, 0x92, 0x86, 0x98, 0x58, 0xac, 0x07, 0x36, 0x46, 0xcf, 0x17, 0x2a, 0xeb,
+	0x9a, 0x57, 0x52, 0x54, 0x19, 0x04, 0x57, 0x2c, 0x65, 0xcd, 0xc5, 0x8b, 0x22, 0x05, 0x32, 0x3b,
+	0x3b, 0xb5, 0x12, 0x6a, 0x1d, 0x88, 0x29, 0x24, 0xc2, 0xc5, 0x5a, 0x96, 0x98, 0x53, 0x9a, 0x0a,
+	0xb5, 0x0f, 0xc2, 0xb1, 0x62, 0xb2, 0x60, 0x74, 0x92, 0x38, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23,
+	0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6,
+	0x63, 0x39, 0x86, 0x24, 0x88, 0x3f, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x12, 0xe3, 0xd0,
+	0xd3, 0xdd, 0x00, 0x00, 0x00,
+}
+
 func (m *Error) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -193,7 +213,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 			}
 			b := dAtA[iNdEx]
 			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
+			wire |= uint64(b&0x7F) << shift
 			if b < 0x80 {
 				break
 			}
@@ -221,7 +241,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -231,6 +251,9 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthError
 			}
 			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthError
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -250,7 +273,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= (uint64(b) & 0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -260,6 +283,9 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthError
 			}
 			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthError
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -279,7 +305,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= (int(b) & 0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -288,6 +314,9 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				return ErrInvalidLengthError
 			}
 			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthError
+			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
@@ -308,7 +337,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					wire |= (uint64(b) & 0x7F) << shift
+					wire |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -325,7 +354,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 						}
 						b := dAtA[iNdEx]
 						iNdEx++
-						stringLenmapkey |= (uint64(b) & 0x7F) << shift
+						stringLenmapkey |= uint64(b&0x7F) << shift
 						if b < 0x80 {
 							break
 						}
@@ -335,6 +364,9 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 						return ErrInvalidLengthError
 					}
 					postStringIndexmapkey := iNdEx + intStringLenmapkey
+					if postStringIndexmapkey < 0 {
+						return ErrInvalidLengthError
+					}
 					if postStringIndexmapkey > l {
 						return io.ErrUnexpectedEOF
 					}
@@ -351,7 +383,7 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 						}
 						b := dAtA[iNdEx]
 						iNdEx++
-						stringLenmapvalue |= (uint64(b) & 0x7F) << shift
+						stringLenmapvalue |= uint64(b&0x7F) << shift
 						if b < 0x80 {
 							break
 						}
@@ -361,6 +393,9 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 						return ErrInvalidLengthError
 					}
 					postStringIndexmapvalue := iNdEx + intStringLenmapvalue
+					if postStringIndexmapvalue < 0 {
+						return ErrInvalidLengthError
+					}
 					if postStringIndexmapvalue > l {
 						return io.ErrUnexpectedEOF
 					}
@@ -390,6 +425,9 @@ func (m *Error) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			if skippy < 0 {
+				return ErrInvalidLengthError
+			}
+			if (iNdEx + skippy) < 0 {
 				return ErrInvalidLengthError
 			}
 			if (iNdEx + skippy) > l {
@@ -458,8 +496,11 @@ func skipError(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			iNdEx += length
 			if length < 0 {
+				return 0, ErrInvalidLengthError
+			}
+			iNdEx += length
+			if iNdEx < 0 {
 				return 0, ErrInvalidLengthError
 			}
 			return iNdEx, nil
@@ -490,6 +531,9 @@ func skipError(dAtA []byte) (n int, err error) {
 					return 0, err
 				}
 				iNdEx = start + next
+				if iNdEx < 0 {
+					return 0, ErrInvalidLengthError
+				}
 			}
 			return iNdEx, nil
 		case 4:
@@ -508,21 +552,3 @@ var (
 	ErrInvalidLengthError = fmt.Errorf("proto: negative length found during unmarshaling")
 	ErrIntOverflowError   = fmt.Errorf("proto: integer overflow")
 )
-
-func init() { proto.RegisterFile("error.proto", fileDescriptor_error_01e55f08e82a2b7d) }
-
-var fileDescriptor_error_01e55f08e82a2b7d = []byte{
-	// 181 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4e, 0x2d, 0x2a, 0xca,
-	0x2f, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x03, 0x53, 0xc5, 0x4a, 0x8b, 0x19, 0xb9,
-	0x58, 0x5d, 0x41, 0xe2, 0x42, 0x42, 0x5c, 0x2c, 0xc9, 0xf9, 0x29, 0xa9, 0x12, 0x8c, 0x0a, 0x8c,
-	0x1a, 0x9c, 0x41, 0x60, 0xb6, 0x90, 0x00, 0x17, 0x73, 0x6e, 0x71, 0xba, 0x04, 0x13, 0x58, 0x08,
-	0xc4, 0x14, 0x32, 0xe7, 0xe2, 0xc8, 0x4d, 0x2d, 0x49, 0x4c, 0x49, 0x2c, 0x49, 0x94, 0x60, 0x56,
-	0x60, 0xd6, 0xe0, 0x36, 0x92, 0x86, 0x98, 0x58, 0xac, 0x07, 0x36, 0x46, 0xcf, 0x17, 0x2a, 0xeb,
-	0x9a, 0x57, 0x52, 0x54, 0x19, 0x04, 0x57, 0x2c, 0x65, 0xcd, 0xc5, 0x8b, 0x22, 0x05, 0x32, 0x3b,
-	0x3b, 0xb5, 0x12, 0x6a, 0x1d, 0x88, 0x29, 0x24, 0xc2, 0xc5, 0x5a, 0x96, 0x98, 0x53, 0x9a, 0x0a,
-	0xb5, 0x0f, 0xc2, 0xb1, 0x62, 0xb2, 0x60, 0x74, 0x92, 0x38, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23,
-	0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6,
-	0x63, 0x39, 0x86, 0x24, 0x88, 0x3f, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x12, 0xe3, 0xd0,
-	0xd3, 0xdd, 0x00, 0x00, 0x00,
-}
